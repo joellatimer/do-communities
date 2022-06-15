@@ -1,0 +1,33 @@
+
+import { ref } from '@vue/reactivity'
+import axios from 'axios'
+const getMembers = () => {
+    let members = ref([])
+    const error = ref(null)
+    const groupId = localStorage.groupId
+    console.log("groupId", groupId)
+  
+    const load = async ()=> {
+        try {
+            let data = await axios(process.env.VUE_APP_URL + "groupMembers/" + groupId)
+            
+            if(!data.statusText){
+                throw Error('no data available')
+            }
+            members.value = data.data.members
+            console.log("members", data.data.members)
+          
+        } catch (err) {
+            error.value = err.message
+           
+        }
+       
+    }
+    return {
+        members,
+        error, 
+        load
+    }
+}
+
+export default getMembers
