@@ -9,7 +9,7 @@ const getMembers = () => {
   
     const load = async ()=> {
         try {
-            let data = await axios(process.env.VUE_APP_URL + "/groupMembers/" + groupId)
+            let data = await axios(process.env.VUE_APP_URL + "groupMembers/" + groupId)
             
             if(!data.statusText){
                 throw Error('no data available')
