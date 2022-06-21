@@ -45,7 +45,7 @@ export default {
          
             console.log("env", process.env.NODE_ENV)
         
-            axios.post("http://204.48.21.44:81/groups/login", credentials)
+            axios.post(process.env.VUE_APP_URL + "/groups/login", credentials)
             .then((response) => {
                 setAuthHeader(response.data.token)
                 localStorage.setItem('token', response.data.token),
@@ -63,7 +63,7 @@ export default {
         },
         getPost(){
             axios
-                .get(process.env.VUE_APP_URL + "groups")
+                .get(process.env.VUE_APP_URL + "/groups")
                 .then(response => console.log(response.data))
                 .catch(err => console.log(err.response))
         }
